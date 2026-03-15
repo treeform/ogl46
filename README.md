@@ -1,4 +1,18 @@
-# OpenGL Examples in Nim
+<img src="docs/ogl46Banner.png">
+
+# ogl46 - OpenGL 4.6 DSA wrapper for Nim.
+
+`nimby install ogl46`
+
+![Github Actions](https://github.com/treeform/ogl46/workflows/Github%20Actions/badge.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/treeform/ogl46)
+![GitHub Repo stars](https://img.shields.io/github/stars/treeform/ogl46)
+![GitHub](https://img.shields.io/github/license/treeform/ogl46)
+![GitHub issues](https://img.shields.io/github/issues/treeform/ogl46)
+
+[API reference](https://treeform.github.io/ogl46)
+
+## About
 
 I think OpenGL gets a bad rap. Yes, there have been many different versions -- from
 OpenGL 1.x, which relied on immediate-mode calls like `glColor3f`, `glVertex3f`,
@@ -12,10 +26,15 @@ without ever binding them to global state first. It feels like a very natural,
 object-oriented API. Yet almost nobody teaches OpenGL this way, and almost nobody
 provides examples written this way.
 
-Here I provide a small library that wraps standard OpenGL in a **Nim-first API**,
+`ogl46` is a small library that wraps standard OpenGL in a **Nim-first API**,
 where you create tidy Nim objects and don't have to think about the raw GL calls
-happening underneath. The examples also demonstrate why DSA is such a good API --
-and why it's a shame that so few people use it or teach it this way.
+happening underneath. It imports the standard Nim `opengl` bindings internally
+but only exposes the Direct State Access subset with type-safe enums and distinct
+handle types. The legacy bind-to-edit API is completely hidden.
+
+### Documentation
+
+[API reference](https://treeform.github.io/ogl46)
 
 ## The Three Styles of OpenGL
 
