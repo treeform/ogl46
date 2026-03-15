@@ -1,4 +1,4 @@
-<img src="docs/ogl46Banner.png">
+<img src="docs/ogl46.png">
 
 # ogl46 - OpenGL 4.6 DSA wrapper for Nim.
 
