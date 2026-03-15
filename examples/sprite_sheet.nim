@@ -154,7 +154,7 @@ proc loadSpriteTexture(): ogl.Texture =
   result.maxAnisotropy = 8.0'f32
 
 when isMainModule:
-  let window = newWindow("OpenGL Sprite Sheet", ivec2(InitialWidth, InitialHeight))
+  let window = newWindow("OpenGL 4.6 DSA - Sprite Sheet", ivec2(InitialWidth, InitialHeight))
   makeContextCurrent(window)
   ogl.init()
 

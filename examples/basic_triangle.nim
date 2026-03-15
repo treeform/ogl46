@@ -46,7 +46,7 @@ void main() {
   ]
 
 when isMainModule:
-  let window = newWindow("OpenGL Basic Triangle", ivec2(Width, Height))
+  let window = newWindow("OpenGL 4.6 DSA - Basic Triangle", ivec2(Width, Height))
   makeContextCurrent(window)
   ogl.init()
 

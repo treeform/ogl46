@@ -111,7 +111,7 @@ proc loadTexture(): ogl.Texture =
   result.wrapT = WrapMode.Repeat
 
 when isMainModule:
-  let window = newWindow("OpenGL Textured Quad", ivec2(Width, Height))
+  let window = newWindow("OpenGL 4.6 DSA - Textured Quad", ivec2(Width, Height))
   makeContextCurrent(window)
   ogl.init()
 

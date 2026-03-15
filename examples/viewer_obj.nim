@@ -172,7 +172,7 @@ proc updateCamera(camera: var CameraState, window: Window) =
     )
 
 when isMainModule:
-  let window = newWindow("OpenGL Bunny Viewer", ivec2(Width, Height),
+  let window = newWindow("OpenGL 4.6 DSA - Bunny Viewer", ivec2(Width, Height),
                           msaa = msaa4x)
   makeContextCurrent(window)
   ogl.init()

@@ -129,7 +129,7 @@ proc loadTexture(): ogl.Texture =
   result.wrapT = WrapMode.Repeat
 
 when isMainModule:
-  let window = newWindow("OpenGL Basic Cube", ivec2(Width, Height), msaa = msaa4x)
+  let window = newWindow("OpenGL 4.6 DSA - Basic Cube", ivec2(Width, Height), msaa = msaa4x)
   makeContextCurrent(window)
   ogl.init()
 

@@ -7,7 +7,7 @@ const
   Height = 800
 
 when isMainModule:
-  let window = newWindow("OpenGL Color Cycle", ivec2(Width, Height), vsync = true)
+  let window = newWindow("OpenGL 4.6 DSA - Color Cycle", ivec2(Width, Height), vsync = true)
   makeContextCurrent(window)
   ogl.init()
 
