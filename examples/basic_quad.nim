@@ -1,7 +1,4 @@
-import std/os
-import pixie, pixie/fileformats/png
-import windy
-import ../src/ogl
+import std/os, pixie, pixie/fileformats/png, windy, ../src/ogl
 
 type
   QuadVertex = object
@@ -42,38 +39,39 @@ void main() {
 
   Vertices = [
     QuadVertex(
-      position: [-0.5'f32, 0.5'f32, 0.0'f32],
-      color: [1.0'f32, 0.0'f32, 0.0'f32],
-      uv: [0.0'f32, 0.0'f32]
+      position: [-0.5'f, 0.5'f, 0.0'f],
+      color: [1.0'f, 0.0'f, 0.0'f],
+      uv: [0.0'f, 0.0'f]
     ),
     QuadVertex(
-      position: [0.5'f32, 0.5'f32, 0.0'f32],
-      color: [0.0'f32, 1.0'f32, 0.0'f32],
-      uv: [1.0'f32, 0.0'f32]
+      position: [0.5'f, 0.5'f, 0.0'f],
+      color: [0.0'f, 1.0'f, 0.0'f],
+      uv: [1.0'f, 0.0'f]
     ),
     QuadVertex(
-      position: [0.5'f32, -0.5'f32, 0.0'f32],
-      color: [0.0'f32, 0.0'f32, 1.0'f32],
-      uv: [1.0'f32, 1.0'f32]
+      position: [0.5'f, -0.5'f, 0.0'f],
+      color: [0.0'f, 0.0'f, 1.0'f],
+      uv: [1.0'f, 1.0'f]
     ),
     QuadVertex(
-      position: [-0.5'f32, 0.5'f32, 0.0'f32],
-      color: [1.0'f32, 0.0'f32, 0.0'f32],
-      uv: [0.0'f32, 0.0'f32]
+      position: [-0.5'f, 0.5'f, 0.0'f],
+      color: [1.0'f, 0.0'f, 0.0'f],
+      uv: [0.0'f, 0.0'f]
     ),
     QuadVertex(
-      position: [0.5'f32, -0.5'f32, 0.0'f32],
-      color: [0.0'f32, 0.0'f32, 1.0'f32],
-      uv: [1.0'f32, 1.0'f32]
+      position: [0.5'f, -0.5'f, 0.0'f],
+      color: [0.0'f, 0.0'f, 1.0'f],
+      uv: [1.0'f, 1.0'f]
     ),
     QuadVertex(
-      position: [-0.5'f32, -0.5'f32, 0.0'f32],
-      color: [1.0'f32, 1.0'f32, 0.0'f32],
-      uv: [0.0'f32, 1.0'f32]
+      position: [-0.5'f, -0.5'f, 0.0'f],
+      color: [1.0'f, 1.0'f, 0.0'f],
+      uv: [0.0'f, 1.0'f]
     )
   ]
 
 proc ensureTextureFile() =
+  ## Generate a checkerboard PNG texture if one does not already exist.
   if fileExists(TexturePath):
     return
 
@@ -95,12 +93,14 @@ proc ensureTextureFile() =
   writeFile(TexturePath, encodePng(TextureSize, TextureSize, 4, addr pixels[0], pixels.len))
 
 proc loadTexture(): ogl.Texture =
+  ## Load the texture from disk and upload it to the GPU.
   ensureTextureFile()
   let img = readImage(TexturePath)
   var pixelBytes = newSeq[uint8](img.width * img.height * 4)
   for y in 0 ..< img.height:
-    let srcIdx = img.dataIndex(0, y)
-    let srcPtr = cast[ptr uint8](img.data[srcIdx].addr)
+    let
+      srcIdx = img.dataIndex(0, y)
+      srcPtr = cast[ptr uint8](img.data[srcIdx].addr)
     copyMem(addr pixelBytes[y * img.width * 4], srcPtr, img.width * 4)
 
   result = newTexture2D(InternalFormat.RGBA8, img.width, img.height)
@@ -110,42 +110,42 @@ proc loadTexture(): ogl.Texture =
   result.wrapS = WrapMode.Repeat
   result.wrapT = WrapMode.Repeat
 
-when isMainModule:
-  let window = newWindow("OpenGL 4.6 DSA - Textured Quad", ivec2(Width, Height))
-  makeContextCurrent(window)
-  ogl.init()
+let window = newWindow("OpenGL 4.6 DSA - Textured Quad", ivec2(Width, Height))
+makeContextCurrent(window)
+ogl.init()
 
-  var program = newProgram(VertShader, FragShader)
-  var texture = loadTexture()
+var
+  program = newProgram(VertShader, FragShader)
+  texture = loadTexture()
+  vbo = newBuffer(Vertices, BufferUsage.StaticDraw)
+  vao = newVertexArray()
 
-  var vbo = newBuffer(Vertices, BufferUsage.StaticDraw)
-  var vao = newVertexArray()
-  vao.addBuffer(vbo, [
-    attr(0, 3, float32),
-    attr(1, 3, float32),
-    attr(2, 2, float32),
-  ])
+vao.addBuffer(vbo, [
+  attr(0, 3, float32),
+  attr(1, 3, float32),
+  attr(2, 2, float32),
+])
 
-  program.setUniform("uTexture", 0'i32)
-  ogl.clearColor(0.05, 0.05, 0.1, 1.0)
+program.setUniform("uTexture", 0'i32)
+ogl.clearColor(0.05, 0.05, 0.1, 1.0)
 
-  window.onResize = proc() =
-    let size = window.size
-    if size.x > 0 and size.y > 0:
-      ogl.viewport(0, 0, size.x.int, size.y.int)
+window.onResize = proc() =
+  let size = window.size
+  if size.x > 0 and size.y > 0:
+    ogl.viewport(0, 0, size.x.int, size.y.int)
 
-  while not window.closeRequested:
-    pollEvents()
+while not window.closeRequested:
+  pollEvents()
 
-    ogl.clear({ClearBit.Color})
-    program.use()
-    texture.bindToUnit(0)
-    vao.bindVao()
-    ogl.drawArrays(Primitive.Triangles, 0, Vertices.len)
+  ogl.clear({ClearBit.Color})
+  program.use()
+  texture.bindToUnit(0)
+  vao.bindVao()
+  ogl.drawArrays(Primitive.Triangles, 0, Vertices.len)
 
-    window.swapBuffers()
+  window.swapBuffers()
 
-  destroy(vao)
-  destroy(vbo)
-  destroy(texture)
-  destroy(program)
+destroy(vao)
+destroy(vbo)
+destroy(texture)
+destroy(program)

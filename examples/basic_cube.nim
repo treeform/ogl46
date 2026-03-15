@@ -1,8 +1,9 @@
-import std/[os, math]
-import pixie, pixie/fileformats/png
-import vmath
-import windy
-import ../src/ogl
+import std/[os, math], pixie, pixie/fileformats/png, vmath, windy, ../src/ogl
+
+type
+  CubeVertex = object
+    position: array[3, float32]
+    uv: array[2, float32]
 
 const
   Width = 1280
@@ -32,57 +33,53 @@ void main() {
 }
 """
 
-type
-  CubeVertex = object
-    position: array[3, float32]
-    uv: array[2, float32]
-
 const CubeVertices = [
   # Front
-  CubeVertex(position: [-1.0'f32,  1.0, 1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [ 1.0'f32, -1.0, 1.0], uv: [1.0'f32, 1.0]),
-  CubeVertex(position: [ 1.0'f32,  1.0, 1.0], uv: [1.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32,  1.0, 1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32, -1.0, 1.0], uv: [0.0'f32, 1.0]),
-  CubeVertex(position: [ 1.0'f32, -1.0, 1.0], uv: [1.0'f32, 1.0]),
+  CubeVertex(position: [-1.0'f,  1.0, 1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [ 1.0'f, -1.0, 1.0], uv: [1.0'f, 1.0]),
+  CubeVertex(position: [ 1.0'f,  1.0, 1.0], uv: [1.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f,  1.0, 1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f, -1.0, 1.0], uv: [0.0'f, 1.0]),
+  CubeVertex(position: [ 1.0'f, -1.0, 1.0], uv: [1.0'f, 1.0]),
   # Back
-  CubeVertex(position: [ 1.0'f32,  1.0, -1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32, -1.0, -1.0], uv: [1.0'f32, 1.0]),
-  CubeVertex(position: [-1.0'f32,  1.0, -1.0], uv: [1.0'f32, 0.0]),
-  CubeVertex(position: [ 1.0'f32,  1.0, -1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [ 1.0'f32, -1.0, -1.0], uv: [0.0'f32, 1.0]),
-  CubeVertex(position: [-1.0'f32, -1.0, -1.0], uv: [1.0'f32, 1.0]),
+  CubeVertex(position: [ 1.0'f,  1.0, -1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f, -1.0, -1.0], uv: [1.0'f, 1.0]),
+  CubeVertex(position: [-1.0'f,  1.0, -1.0], uv: [1.0'f, 0.0]),
+  CubeVertex(position: [ 1.0'f,  1.0, -1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [ 1.0'f, -1.0, -1.0], uv: [0.0'f, 1.0]),
+  CubeVertex(position: [-1.0'f, -1.0, -1.0], uv: [1.0'f, 1.0]),
   # Left
-  CubeVertex(position: [-1.0'f32,  1.0, -1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32, -1.0,  1.0], uv: [1.0'f32, 1.0]),
-  CubeVertex(position: [-1.0'f32,  1.0,  1.0], uv: [1.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32,  1.0, -1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32, -1.0, -1.0], uv: [0.0'f32, 1.0]),
-  CubeVertex(position: [-1.0'f32, -1.0,  1.0], uv: [1.0'f32, 1.0]),
+  CubeVertex(position: [-1.0'f,  1.0, -1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f, -1.0,  1.0], uv: [1.0'f, 1.0]),
+  CubeVertex(position: [-1.0'f,  1.0,  1.0], uv: [1.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f,  1.0, -1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f, -1.0, -1.0], uv: [0.0'f, 1.0]),
+  CubeVertex(position: [-1.0'f, -1.0,  1.0], uv: [1.0'f, 1.0]),
   # Right
-  CubeVertex(position: [1.0'f32,  1.0,  1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [1.0'f32, -1.0, -1.0], uv: [1.0'f32, 1.0]),
-  CubeVertex(position: [1.0'f32,  1.0, -1.0], uv: [1.0'f32, 0.0]),
-  CubeVertex(position: [1.0'f32,  1.0,  1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [1.0'f32, -1.0,  1.0], uv: [0.0'f32, 1.0]),
-  CubeVertex(position: [1.0'f32, -1.0, -1.0], uv: [1.0'f32, 1.0]),
+  CubeVertex(position: [1.0'f,  1.0,  1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [1.0'f, -1.0, -1.0], uv: [1.0'f, 1.0]),
+  CubeVertex(position: [1.0'f,  1.0, -1.0], uv: [1.0'f, 0.0]),
+  CubeVertex(position: [1.0'f,  1.0,  1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [1.0'f, -1.0,  1.0], uv: [0.0'f, 1.0]),
+  CubeVertex(position: [1.0'f, -1.0, -1.0], uv: [1.0'f, 1.0]),
   # Top
-  CubeVertex(position: [-1.0'f32, 1.0, -1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [ 1.0'f32, 1.0,  1.0], uv: [1.0'f32, 1.0]),
-  CubeVertex(position: [ 1.0'f32, 1.0, -1.0], uv: [1.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32, 1.0, -1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32, 1.0,  1.0], uv: [0.0'f32, 1.0]),
-  CubeVertex(position: [ 1.0'f32, 1.0,  1.0], uv: [1.0'f32, 1.0]),
+  CubeVertex(position: [-1.0'f, 1.0, -1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [ 1.0'f, 1.0,  1.0], uv: [1.0'f, 1.0]),
+  CubeVertex(position: [ 1.0'f, 1.0, -1.0], uv: [1.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f, 1.0, -1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f, 1.0,  1.0], uv: [0.0'f, 1.0]),
+  CubeVertex(position: [ 1.0'f, 1.0,  1.0], uv: [1.0'f, 1.0]),
   # Bottom
-  CubeVertex(position: [-1.0'f32, -1.0,  1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [ 1.0'f32, -1.0, -1.0], uv: [1.0'f32, 1.0]),
-  CubeVertex(position: [ 1.0'f32, -1.0,  1.0], uv: [1.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32, -1.0,  1.0], uv: [0.0'f32, 0.0]),
-  CubeVertex(position: [-1.0'f32, -1.0, -1.0], uv: [0.0'f32, 1.0]),
-  CubeVertex(position: [ 1.0'f32, -1.0, -1.0], uv: [1.0'f32, 1.0]),
+  CubeVertex(position: [-1.0'f, -1.0,  1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [ 1.0'f, -1.0, -1.0], uv: [1.0'f, 1.0]),
+  CubeVertex(position: [ 1.0'f, -1.0,  1.0], uv: [1.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f, -1.0,  1.0], uv: [0.0'f, 0.0]),
+  CubeVertex(position: [-1.0'f, -1.0, -1.0], uv: [0.0'f, 1.0]),
+  CubeVertex(position: [ 1.0'f, -1.0, -1.0], uv: [1.0'f, 1.0]),
 ]
 
 proc mat4ToArray(m: Mat4): array[16, float32] =
+  ## Convert a Mat4 to a flat array of 16 floats for uniform upload.
   var i = 0
   for col in 0 ..< 4:
     for row in 0 ..< 4:
@@ -90,6 +87,7 @@ proc mat4ToArray(m: Mat4): array[16, float32] =
       inc i
 
 proc ensureTextureFile() =
+  ## Generate a default checkerboard texture if the file does not exist.
   if fileExists(TexturePath):
     return
 
@@ -111,12 +109,14 @@ proc ensureTextureFile() =
   writeFile(TexturePath, encodePng(TextureSize, TextureSize, 4, addr pixels[0], pixels.len))
 
 proc loadTexture(): ogl.Texture =
+  ## Load the texture from disk and create a mipmapped GPU texture.
   ensureTextureFile()
   let img = readImage(TexturePath)
   var pixelBytes = newSeq[uint8](img.width * img.height * 4)
   for y in 0 ..< img.height:
-    let srcIdx = img.dataIndex(0, y)
-    let srcPtr = cast[ptr uint8](img.data[srcIdx].addr)
+    let
+      srcIdx = img.dataIndex(0, y)
+      srcPtr = cast[ptr uint8](img.data[srcIdx].addr)
     copyMem(addr pixelBytes[y * img.width * 4], srcPtr, img.width * 4)
 
   let mipLevels = int(floor(log2(max(img.width, img.height).float32))) + 1
@@ -128,64 +128,65 @@ proc loadTexture(): ogl.Texture =
   result.wrapS = WrapMode.Repeat
   result.wrapT = WrapMode.Repeat
 
-when isMainModule:
-  let window = newWindow("OpenGL 4.6 DSA - Basic Cube", ivec2(Width, Height), msaa = msaa4x)
-  makeContextCurrent(window)
-  ogl.init()
+let window = newWindow("OpenGL 4.6 DSA - Basic Cube", ivec2(Width, Height), msaa = msaa4x)
+makeContextCurrent(window)
+ogl.init()
 
-  var program = newProgram(VertShader, FragShader)
-  let mvpLoc = program.uniformLoc("uMVP")
-  var texture = loadTexture()
+var program = newProgram(VertShader, FragShader)
+let mvpLoc = program.uniformLoc("uMVP")
+var texture = loadTexture()
 
-  var vbo = newBuffer(CubeVertices, BufferUsage.StaticDraw)
-  var vao = newVertexArray()
-  vao.addBuffer(vbo, [
-    attr(0, 3, float32),
-    attr(1, 2, float32),
-  ])
+var
+  vbo = newBuffer(CubeVertices, BufferUsage.StaticDraw)
+  vao = newVertexArray()
 
-  program.setUniform("uTexture", 0'i32)
+vao.addBuffer(vbo, [
+  attr(0, 3, float32),
+  attr(1, 2, float32),
+])
 
-  ogl.enable(Capability.DepthTest)
-  ogl.depthFunc(CompareFunc.Less)
-  ogl.enable(Capability.CullFace)
-  ogl.cullFace(Face.Back)
-  ogl.frontFace(Winding.CCW)
-  ogl.enable(Capability.Multisample)
-  ogl.clearColor(0.05, 0.05, 0.1, 1.0)
+program.setUniform("uTexture", 0'i32)
 
-  var frameCounter: uint64 = 0
+ogl.enable(Capability.DepthTest)
+ogl.depthFunc(CompareFunc.Less)
+ogl.enable(Capability.CullFace)
+ogl.cullFace(Face.Back)
+ogl.frontFace(Winding.CCW)
+ogl.enable(Capability.Multisample)
+ogl.clearColor(0.05, 0.05, 0.1, 1.0)
 
-  window.onResize = proc() =
-    let size = window.size
-    if size.x > 0 and size.y > 0:
-      ogl.viewport(0, 0, size.x.int, size.y.int)
+var frameCounter: uint64 = 0
 
-  while not window.closeRequested:
-    pollEvents()
-    let
-      size = window.size
-      aspect = size.x.float32 / max(1, size.y).float32
-      time = frameCounter.float32 / 60.0'f32
-      model =
-        translate(vec3(0.0'f32, 0.0'f32, -5.0'f32)) *
-        rotateY(time * 0.7'f32) *
-        rotateX(time * 0.35'f32)
-      proj = perspective(60.0'f32, aspect, 0.1'f32, 100.0'f32)
-      mvp = proj * model
-    var transform = mat4ToArray(mvp)
+window.onResize = proc() =
+  let size = window.size
+  if size.x > 0 and size.y > 0:
+    ogl.viewport(0, 0, size.x.int, size.y.int)
 
-    ogl.clear({ClearBit.Color, ClearBit.Depth})
-    program.use()
-    program.setUniformMat4(mvpLoc, transform)
-    texture.bindToUnit(0)
-    vao.bindVao()
-    ogl.drawArrays(Primitive.Triangles, 0, CubeVertices.len)
+while not window.closeRequested:
+  pollEvents()
+  let
+    size = window.size
+    aspect = size.x.float32 / max(1, size.y).float32
+    time = frameCounter.float32 / 60.0'f
+    model =
+      translate(vec3(0.0'f, 0.0'f, -5.0'f)) *
+      rotateY(time * 0.7'f) *
+      rotateX(time * 0.35'f)
+    proj = perspective(60.0'f, aspect, 0.1'f, 100.0'f)
+    mvp = proj * model
+  var transform = mat4ToArray(mvp)
 
-    window.swapBuffers()
-    inc frameCounter
+  ogl.clear({ClearBit.Color, ClearBit.Depth})
+  program.use()
+  program.setUniformMat4(mvpLoc, transform)
+  texture.bindToUnit(0)
+  vao.bindVao()
+  ogl.drawArrays(Primitive.Triangles, 0, CubeVertices.len)
 
-  destroy(vao)
-  destroy(vbo)
-  destroy(texture)
-  destroy(program)
+  window.swapBuffers()
+  inc frameCounter
+
+destroy(vao)
+destroy(vbo)
+destroy(texture)
+destroy(program)

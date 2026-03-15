@@ -1,5 +1,4 @@
-import windy
-import ../src/ogl
+import windy, ../src/ogl
 
 type
   TriangleVertex = object
@@ -32,45 +31,45 @@ void main() {
 
   Vertices = [
     TriangleVertex(
-      position: [0.0'f32, 0.5'f32, 0.0'f32],
-      color: [1.0'f32, 0.0'f32, 0.0'f32]
+      position: [0.0'f, 0.5'f, 0.0'f],
+      color: [1.0'f, 0.0'f, 0.0'f]
     ),
     TriangleVertex(
-      position: [0.5'f32, -0.5'f32, 0.0'f32],
-      color: [0.0'f32, 1.0'f32, 0.0'f32]
+      position: [0.5'f, -0.5'f, 0.0'f],
+      color: [0.0'f, 1.0'f, 0.0'f]
     ),
     TriangleVertex(
-      position: [-0.5'f32, -0.5'f32, 0.0'f32],
-      color: [0.0'f32, 0.0'f32, 1.0'f32]
+      position: [-0.5'f, -0.5'f, 0.0'f],
+      color: [0.0'f, 0.0'f, 1.0'f]
     )
   ]
 
-when isMainModule:
-  let window = newWindow("OpenGL 4.6 DSA - Basic Triangle", ivec2(Width, Height))
-  makeContextCurrent(window)
-  ogl.init()
+let window = newWindow("OpenGL 4.6 DSA - Basic Triangle", ivec2(Width, Height))
+makeContextCurrent(window)
+ogl.init()
 
-  var program = newProgram(VertShader, FragShader)
+var
+  program = newProgram(VertShader, FragShader)
+  vbo = newBuffer(Vertices, BufferUsage.StaticDraw)
+  vao = newVertexArray()
 
-  var vbo = newBuffer(Vertices, BufferUsage.StaticDraw)
-  var vao = newVertexArray()
-  vao.addBuffer(vbo, [
-    attr(0, 3, float32),
-    attr(1, 3, float32),
-  ])
+vao.addBuffer(vbo, [
+  attr(0, 3, float32),
+  attr(1, 3, float32),
+])
 
-  ogl.clearColor(0.05, 0.05, 0.1, 1.0)
+ogl.clearColor(0.05, 0.05, 0.1, 1.0)
 
-  while not window.closeRequested:
-    pollEvents()
+while not window.closeRequested:
+  pollEvents()
 
-    ogl.clear({ClearBit.Color})
-    program.use()
-    vao.bindVao()
-    ogl.drawArrays(Primitive.Triangles, 0, Vertices.len)
+  ogl.clear({ClearBit.Color})
+  program.use()
+  vao.bindVao()
+  ogl.drawArrays(Primitive.Triangles, 0, Vertices.len)
 
-    window.swapBuffers()
+  window.swapBuffers()
 
-  destroy(vao)
-  destroy(vbo)
-  destroy(program)
+destroy(vao)
+destroy(vbo)
+destroy(program)
