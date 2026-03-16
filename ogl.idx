@@ -1,0 +1,190 @@
+nimTitle	ogl	ogl.html	module ogl		0
+nim	OglError	ogl.html#OglError	object OglError		13
+nim	Texture	ogl.html#Texture	type Texture		20
+nim	Buffer	ogl.html#Buffer	type Buffer		21
+nim	VertexArray	ogl.html#VertexArray	type VertexArray		22
+nim	Shader	ogl.html#Shader	type Shader		23
+nim	Program	ogl.html#Program	type Program		24
+nim	Framebuffer	ogl.html#Framebuffer	type Framebuffer		25
+nim	Renderbuffer	ogl.html#Renderbuffer	type Renderbuffer		26
+nim	Sampler	ogl.html#Sampler	type Sampler		27
+nim	UniformLoc	ogl.html#UniformLoc	type UniformLoc		28
+nim	`==`	ogl.html#==,Texture,Texture	proc `==`(a, b: Texture): bool		30
+nim	`==`	ogl.html#==,Buffer,Buffer	proc `==`(a, b: Buffer): bool		31
+nim	`==`	ogl.html#==,VertexArray,VertexArray	proc `==`(a, b: VertexArray): bool		32
+nim	`==`	ogl.html#==,Shader,Shader	proc `==`(a, b: Shader): bool		33
+nim	`==`	ogl.html#==,Program,Program	proc `==`(a, b: Program): bool		34
+nim	`==`	ogl.html#==,Framebuffer,Framebuffer	proc `==`(a, b: Framebuffer): bool		35
+nim	`==`	ogl.html#==,Renderbuffer,Renderbuffer	proc `==`(a, b: Renderbuffer): bool		36
+nim	`==`	ogl.html#==,Sampler,Sampler	proc `==`(a, b: Sampler): bool		37
+nim	`==`	ogl.html#==,UniformLoc,UniformLoc	proc `==`(a, b: UniformLoc): bool		38
+nim	`$`	ogl.html#$,Texture	proc `$`(x: Texture): string		40
+nim	`$`	ogl.html#$,Buffer	proc `$`(x: Buffer): string		41
+nim	`$`	ogl.html#$,VertexArray	proc `$`(x: VertexArray): string		42
+nim	`$`	ogl.html#$,Shader	proc `$`(x: Shader): string		43
+nim	`$`	ogl.html#$,Program	proc `$`(x: Program): string		44
+nim	`$`	ogl.html#$,Framebuffer	proc `$`(x: Framebuffer): string		45
+nim	`$`	ogl.html#$,Renderbuffer	proc `$`(x: Renderbuffer): string		46
+nim	`$`	ogl.html#$,Sampler	proc `$`(x: Sampler): string		47
+nim	NoTexture	ogl.html#NoTexture	const NoTexture		50
+nim	NoBuffer	ogl.html#NoBuffer	const NoBuffer		51
+nim	NoVertexArray	ogl.html#NoVertexArray	const NoVertexArray		52
+nim	NoProgram	ogl.html#NoProgram	const NoProgram		53
+nim	NoFramebuffer	ogl.html#NoFramebuffer	const NoFramebuffer		54
+nim	NoRenderbuffer	ogl.html#NoRenderbuffer	const NoRenderbuffer		55
+nim	NoSampler	ogl.html#NoSampler	const NoSampler		56
+nim	InvalidUniform	ogl.html#InvalidUniform	const InvalidUniform		57
+nim	InternalFormat	ogl.html#InternalFormat	enum InternalFormat		64
+nim	PixelFormat	ogl.html#PixelFormat	enum PixelFormat		91
+nim	PixelType	ogl.html#PixelType	enum PixelType		102
+nim	TextureFilter	ogl.html#TextureFilter	enum TextureFilter		112
+nim	WrapMode	ogl.html#WrapMode	enum WrapMode		120
+nim	BufferUsage	ogl.html#BufferUsage	enum BufferUsage		127
+nim	BufferFlag	ogl.html#BufferFlag	enum BufferFlag		138
+nim	ShaderKind	ogl.html#ShaderKind	enum ShaderKind		146
+nim	Primitive	ogl.html#Primitive	enum Primitive		154
+nim	IndexType	ogl.html#IndexType	enum IndexType		164
+nim	Capability	ogl.html#Capability	enum Capability		169
+nim	BlendFactor	ogl.html#BlendFactor	enum BlendFactor		180
+nim	BlendOp	ogl.html#BlendOp	enum BlendOp		196
+nim	CompareFunc	ogl.html#CompareFunc	enum CompareFunc		203
+nim	Face	ogl.html#Face	enum Face		213
+nim	Winding	ogl.html#Winding	enum Winding		218
+nim	FillMode	ogl.html#FillMode	enum FillMode		222
+nim	ClearBit	ogl.html#ClearBit	enum ClearBit		227
+nim	AttribType	ogl.html#AttribType	enum AttribType		232
+nim	FbAttachment	ogl.html#FbAttachment	enum FbAttachment		243
+nim	FbStatus	ogl.html#FbStatus	enum FbStatus		256
+nim	VertexAttrib	ogl.html#VertexAttrib	object VertexAttrib		272
+nim	attr	ogl.html#attr,int,int,AttribType	proc attr(location, size: int; kind: AttribType; normalized = false): VertexAttrib		285
+nim	attr	ogl.html#attr,int,int,typedesc[float32]	proc attr(location, size: int; T: typedesc[float32]): VertexAttrib		288
+nim	attr	ogl.html#attr,int,int,typedesc[float64]	proc attr(location, size: int; T: typedesc[float64]): VertexAttrib		289
+nim	attr	ogl.html#attr,int,int,typedesc[int32]	proc attr(location, size: int; T: typedesc[int32]): VertexAttrib		290
+nim	attr	ogl.html#attr,int,int,typedesc[uint32]	proc attr(location, size: int; T: typedesc[uint32]): VertexAttrib		291
+nim	attr	ogl.html#attr,int,int,typedesc[int16]	proc attr(location, size: int; T: typedesc[int16]): VertexAttrib		292
+nim	attr	ogl.html#attr,int,int,typedesc[uint16]	proc attr(location, size: int; T: typedesc[uint16]): VertexAttrib		293
+nim	attr	ogl.html#attr,int,int,typedesc[int8]	proc attr(location, size: int; T: typedesc[int8]): VertexAttrib		294
+nim	attr	ogl.html#attr,int,int,typedesc[uint8]	proc attr(location, size: int; T: typedesc[uint8]): VertexAttrib		295
+nim	init	ogl.html#init	proc init()		318
+nim	version	ogl.html#version	proc version(): string		322
+nim	renderer	ogl.html#renderer	proc renderer(): string		325
+nim	createTexture2D	ogl.html#createTexture2D	proc createTexture2D(): Texture		332
+nim	newTexture2D	ogl.html#newTexture2D,InternalFormat,int,int,int	proc newTexture2D(format: InternalFormat; width, height: int; levels = 1): Texture		337
+nim	storage2D	ogl.html#storage2D,Texture,int,InternalFormat,int,int	proc storage2D(tex: Texture; levels: int; format: InternalFormat; width, height: int)		342
+nim	upload	ogl.html#upload,Texture,int,int,int,int,int,PixelFormat,PixelType,pointer	proc upload(tex: Texture; level: int; x, y, width, height: int; format: PixelFormat;\n       pixelType: PixelType; data: pointer)		346
+nim	upload	ogl.html#upload,Texture,int,int,PixelFormat,PixelType,pointer	proc upload(tex: Texture; width, height: int; format: PixelFormat;\n       pixelType: PixelType; data: pointer)		352
+nim	minFilter=	ogl.html#minFilter=,Texture,TextureFilter	proc minFilter=(tex: Texture; filter: TextureFilter)		356
+nim	magFilter=	ogl.html#magFilter=,Texture,TextureFilter	proc magFilter=(tex: Texture; filter: TextureFilter)		359
+nim	wrapS=	ogl.html#wrapS=,Texture,WrapMode	proc wrapS=(tex: Texture; mode: WrapMode)		362
+nim	wrapT=	ogl.html#wrapT=,Texture,WrapMode	proc wrapT=(tex: Texture; mode: WrapMode)		365
+nim	wrapR=	ogl.html#wrapR=,Texture,WrapMode	proc wrapR=(tex: Texture; mode: WrapMode)		368
+nim	maxAnisotropy=	ogl.html#maxAnisotropy=,Texture,float32	proc maxAnisotropy=(tex: Texture; value: float32)		371
+nim	generateMipmaps	ogl.html#generateMipmaps,Texture	proc generateMipmaps(tex: Texture)		374
+nim	bindToUnit	ogl.html#bindToUnit,Texture,int	proc bindToUnit(tex: Texture; unit: int)		377
+nim	destroy	ogl.html#destroy,Texture	proc destroy(tex: var Texture)		380
+nim	createBuffer	ogl.html#createBuffer	proc createBuffer(): Buffer		390
+nim	newBuffer	ogl.html#newBuffer,int,pointer,BufferUsage	proc newBuffer(size: int; data: pointer; usage: BufferUsage): Buffer		395
+nim	newBuffer	ogl.html#newBuffer,openArray[T],BufferUsage	proc newBuffer[T](data: openArray[T]; usage: BufferUsage): Buffer		399
+nim	newBuffer	ogl.html#newBuffer,int,BufferUsage	proc newBuffer(size: int; usage: BufferUsage): Buffer		405
+nim	setData	ogl.html#setData,Buffer,int,pointer,BufferUsage	proc setData(buf: Buffer; size: int; data: pointer; usage: BufferUsage)		408
+nim	setData	ogl.html#setData,Buffer,openArray[T],BufferUsage	proc setData[T](buf: Buffer; data: openArray[T]; usage: BufferUsage)		411
+nim	setSubData	ogl.html#setSubData,Buffer,int,int,pointer	proc setSubData(buf: Buffer; offset, size: int; data: pointer)		418
+nim	setSubData	ogl.html#setSubData,Buffer,int,openArray[T]	proc setSubData[T](buf: Buffer; offset: int; data: openArray[T])		421
+nim	initStorage	ogl.html#initStorage,Buffer,int,pointer,set[BufferFlag]	proc initStorage(buf: Buffer; size: int; data: pointer; flags: set[BufferFlag])		426
+nim	initStorage	ogl.html#initStorage,Buffer,openArray[T],set[BufferFlag]	proc initStorage[T](buf: Buffer; data: openArray[T]; flags: set[BufferFlag])		429
+nim	destroy	ogl.html#destroy,Buffer	proc destroy(buf: var Buffer)		435
+nim	newVertexArray	ogl.html#newVertexArray	proc newVertexArray(): VertexArray		445
+nim	addBuffer	ogl.html#addBuffer,VertexArray,Buffer,openArray[VertexAttrib],int	proc addBuffer(vao: VertexArray; buf: Buffer; attribs: openArray[VertexAttrib];\n          binding = 0)		450
+nim	setElementBuffer	ogl.html#setElementBuffer,VertexArray,Buffer	proc setElementBuffer(vao: VertexArray; buf: Buffer)		469
+nim	enableAttrib	ogl.html#enableAttrib,VertexArray,int	proc enableAttrib(vao: VertexArray; location: int)		472
+nim	disableAttrib	ogl.html#disableAttrib,VertexArray,int	proc disableAttrib(vao: VertexArray; location: int)		475
+nim	bindVao	ogl.html#bindVao,VertexArray	proc bindVao(vao: VertexArray)		478
+nim	unbindVao	ogl.html#unbindVao	proc unbindVao()		481
+nim	destroy	ogl.html#destroy,VertexArray	proc destroy(vao: var VertexArray)		484
+nim	newShader	ogl.html#newShader,ShaderKind,string	proc newShader(kind: ShaderKind; source: string): Shader		494
+nim	destroy	ogl.html#destroy,Shader	proc destroy(shader: var Shader)		513
+nim	newProgram	ogl.html#newProgram,varargs[Shader]	proc newProgram(shaders: varargs[Shader]): Program		522
+nim	newProgram	ogl.html#newProgram,string,string	proc newProgram(vertSource, fragSource: string): Program		542
+nim	use	ogl.html#use,Program	proc use(prog: Program)		552
+nim	uniformLoc	ogl.html#uniformLoc,Program,string	proc uniformLoc(prog: Program; name: string): UniformLoc		555
+nim	setUniform	ogl.html#setUniform,Program,UniformLoc,float32	proc setUniform(prog: Program; loc: UniformLoc; value: float32)		560
+nim	setUniform	ogl.html#setUniform,Program,UniformLoc,float32,float32	proc setUniform(prog: Program; loc: UniformLoc; x, y: float32)		563
+nim	setUniform	ogl.html#setUniform,Program,UniformLoc,float32,float32,float32	proc setUniform(prog: Program; loc: UniformLoc; x, y, z: float32)		566
+nim	setUniform	ogl.html#setUniform,Program,UniformLoc,float32,float32,float32,float32	proc setUniform(prog: Program; loc: UniformLoc; x, y, z, w: float32)		569
+nim	setUniform	ogl.html#setUniform,Program,UniformLoc,int32	proc setUniform(prog: Program; loc: UniformLoc; value: int32)		572
+nim	setUniform	ogl.html#setUniform,Program,UniformLoc,int32,int32	proc setUniform(prog: Program; loc: UniformLoc; x, y: int32)		575
+nim	setUniform	ogl.html#setUniform,Program,UniformLoc,int32,int32,int32	proc setUniform(prog: Program; loc: UniformLoc; x, y, z: int32)		578
+nim	setUniform	ogl.html#setUniform,Program,UniformLoc,int32,int32,int32,int32	proc setUniform(prog: Program; loc: UniformLoc; x, y, z, w: int32)		581
+nim	setUniformMat4	ogl.html#setUniformMat4,Program,UniformLoc,ptr.float32	proc setUniformMat4(prog: Program; loc: UniformLoc; mat: ptr float32;\n               transpose = false)		584
+nim	setUniformMat4	ogl.html#setUniformMat4,Program,UniformLoc,array[,float32]	proc setUniformMat4(prog: Program; loc: UniformLoc; mat: var array[16, float32];\n               transpose = false)		589
+nim	setUniform	ogl.html#setUniform,Program,string,float32	proc setUniform(prog: Program; name: string; value: float32)		593
+nim	setUniform	ogl.html#setUniform,Program,string,float32,float32	proc setUniform(prog: Program; name: string; x, y: float32)		596
+nim	setUniform	ogl.html#setUniform,Program,string,float32,float32,float32	proc setUniform(prog: Program; name: string; x, y, z: float32)		599
+nim	setUniform	ogl.html#setUniform,Program,string,float32,float32,float32,float32	proc setUniform(prog: Program; name: string; x, y, z, w: float32)		602
+nim	setUniform	ogl.html#setUniform,Program,string,int32	proc setUniform(prog: Program; name: string; value: int32)		605
+nim	destroy	ogl.html#destroy,Program	proc destroy(prog: var Program)		608
+nim	newFramebuffer	ogl.html#newFramebuffer	proc newFramebuffer(): Framebuffer		617
+nim	attachTexture	ogl.html#attachTexture,Framebuffer,FbAttachment,Texture,int	proc attachTexture(fb: Framebuffer; attachment: FbAttachment; tex: Texture; level = 0)		622
+nim	attachRenderbuffer	ogl.html#attachRenderbuffer,Framebuffer,FbAttachment,Renderbuffer	proc attachRenderbuffer(fb: Framebuffer; attachment: FbAttachment; rb: Renderbuffer)		627
+nim	setDrawBuffers	ogl.html#setDrawBuffers,Framebuffer,openArray[FbAttachment]	proc setDrawBuffers(fb: Framebuffer; attachments: openArray[FbAttachment])		632
+nim	checkStatus	ogl.html#checkStatus,Framebuffer	proc checkStatus(fb: Framebuffer): FbStatus		639
+nim	bindFb	ogl.html#bindFb,Framebuffer	proc bindFb(fb: Framebuffer)		642
+nim	unbindFb	ogl.html#unbindFb	proc unbindFb()		645
+nim	destroy	ogl.html#destroy,Framebuffer	proc destroy(fb: var Framebuffer)		648
+nim	newRenderbuffer	ogl.html#newRenderbuffer,InternalFormat,int,int	proc newRenderbuffer(format: InternalFormat; width, height: int): Renderbuffer		658
+nim	newRenderbufferMultisample	ogl.html#newRenderbufferMultisample,int,InternalFormat,int,int	proc newRenderbufferMultisample(samples: int; format: InternalFormat;\n                           width, height: int): Renderbuffer		664
+nim	destroy	ogl.html#destroy,Renderbuffer	proc destroy(rb: var Renderbuffer)		672
+nim	newSampler	ogl.html#newSampler	proc newSampler(): Sampler		682
+nim	minFilter=	ogl.html#minFilter=,Sampler,TextureFilter	proc minFilter=(s: Sampler; filter: TextureFilter)		687
+nim	magFilter=	ogl.html#magFilter=,Sampler,TextureFilter	proc magFilter=(s: Sampler; filter: TextureFilter)		690
+nim	wrapS=	ogl.html#wrapS=,Sampler,WrapMode	proc wrapS=(s: Sampler; mode: WrapMode)		693
+nim	wrapT=	ogl.html#wrapT=,Sampler,WrapMode	proc wrapT=(s: Sampler; mode: WrapMode)		696
+nim	wrapR=	ogl.html#wrapR=,Sampler,WrapMode	proc wrapR=(s: Sampler; mode: WrapMode)		699
+nim	maxAnisotropy=	ogl.html#maxAnisotropy=,Sampler,float32	proc maxAnisotropy=(s: Sampler; value: float32)		702
+nim	bindToUnit	ogl.html#bindToUnit,Sampler,int	proc bindToUnit(s: Sampler; unit: int)		705
+nim	destroy	ogl.html#destroy,Sampler	proc destroy(s: var Sampler)		708
+nim	viewport	ogl.html#viewport,int,int,int,int	proc viewport(x, y, width, height: int)		718
+nim	scissor	ogl.html#scissor,int,int,int,int	proc scissor(x, y, width, height: int)		721
+nim	clearColor	ogl.html#clearColor,float32,float32,float32,float32	proc clearColor(r, g, b, a: float32)		724
+nim	clearDepth	ogl.html#clearDepth,float64	proc clearDepth(depth: float64)		727
+nim	clearStencil	ogl.html#clearStencil,int32	proc clearStencil(value: int32)		730
+nim	clear	ogl.html#clear,set[ClearBit]	proc clear(bits: set[ClearBit])		733
+nim	enable	ogl.html#enable,Capability	proc enable(cap: Capability)		736
+nim	disable	ogl.html#disable,Capability	proc disable(cap: Capability)		739
+nim	blendFunc	ogl.html#blendFunc,BlendFactor,BlendFactor	proc blendFunc(src, dst: BlendFactor)		742
+nim	blendFuncSeparate	ogl.html#blendFuncSeparate,BlendFactor,BlendFactor,BlendFactor,BlendFactor	proc blendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha: BlendFactor)		745
+nim	blendEquation	ogl.html#blendEquation,BlendOp	proc blendEquation(op: BlendOp)		749
+nim	blendEquationSeparate	ogl.html#blendEquationSeparate,BlendOp,BlendOp	proc blendEquationSeparate(rgb, alpha: BlendOp)		752
+nim	depthFunc	ogl.html#depthFunc,CompareFunc	proc depthFunc(f: CompareFunc)		755
+nim	depthMask	ogl.html#depthMask,bool	proc depthMask(write: bool)		758
+nim	stencilFunc	ogl.html#stencilFunc,CompareFunc,int32,uint32	proc stencilFunc(f: CompareFunc; reference: int32; mask: uint32)		761
+nim	stencilMask	ogl.html#stencilMask,uint32	proc stencilMask(mask: uint32)		764
+nim	cullFace	ogl.html#cullFace,Face	proc cullFace(face: Face)		767
+nim	frontFace	ogl.html#frontFace,Winding	proc frontFace(winding: Winding)		770
+nim	polygonMode	ogl.html#polygonMode,Face,FillMode	proc polygonMode(face: Face; mode: FillMode)		773
+nim	lineWidth	ogl.html#lineWidth,float32	proc lineWidth(width: float32)		776
+nim	pointSize	ogl.html#pointSize,float32	proc pointSize(size: float32)		779
+nim	colorMask	ogl.html#colorMask,bool,bool,bool,bool	proc colorMask(r, g, b, a: bool)		782
+nim	drawArrays	ogl.html#drawArrays,Primitive,int,int	proc drawArrays(mode: Primitive; first, count: int)		789
+nim	drawElements	ogl.html#drawElements,Primitive,int,IndexType,int	proc drawElements(mode: Primitive; count: int; indexType: IndexType; offset = 0)		792
+nim	drawArraysInstanced	ogl.html#drawArraysInstanced,Primitive,int,int,int	proc drawArraysInstanced(mode: Primitive; first, count, instances: int)		797
+nim	drawElementsInstanced	ogl.html#drawElementsInstanced,Primitive,int,IndexType,int,int	proc drawElementsInstanced(mode: Primitive; count: int; indexType: IndexType;\n                      instances: int; offset = 0)		801
+nimgrp	setuniformmat4	ogl.html#setUniformMat4-procs-all	proc		584
+nimgrp	magfilter=	ogl.html#magFilter=-procs-all	proc		359
+nimgrp	newbuffer	ogl.html#newBuffer-procs-all	proc		395
+nimgrp	setsubdata	ogl.html#setSubData-procs-all	proc		418
+nimgrp	wrapt=	ogl.html#wrapT=-procs-all	proc		365
+nimgrp	wrapr=	ogl.html#wrapR=-procs-all	proc		368
+nimgrp	minfilter=	ogl.html#minFilter=-procs-all	proc		356
+nimgrp	attr	ogl.html#attr-procs-all	proc		285
+nimgrp	destroy	ogl.html#destroy-procs-all	proc		380
+nimgrp	maxanisotropy=	ogl.html#maxAnisotropy=-procs-all	proc		371
+nimgrp	initstorage	ogl.html#initStorage-procs-all	proc		426
+nimgrp	==	ogl.html#==-procs-all	proc		30
+nimgrp	wraps=	ogl.html#wrapS=-procs-all	proc		362
+nimgrp	setuniform	ogl.html#setUniform-procs-all	proc		560
+nimgrp	$	ogl.html#$-procs-all	proc		40
+nimgrp	upload	ogl.html#upload-procs-all	proc		346
+nimgrp	newprogram	ogl.html#newProgram-procs-all	proc		522
+nimgrp	setdata	ogl.html#setData-procs-all	proc		408
+nimgrp	bindtounit	ogl.html#bindToUnit-procs-all	proc		377
