@@ -10,7 +10,7 @@ env:
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v5
       - uses: treeform/setup-nim-action@v6
