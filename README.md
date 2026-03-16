@@ -32,6 +32,8 @@ happening underneath. It imports the standard Nim `opengl` bindings internally
 but only exposes the Direct State Access subset with type-safe enums and distinct
 handle types. The legacy bind-to-edit API is completely hidden.
 
+> **AI disclaimer: Much of this library was AI generated.**
+
 ### Documentation
 
 [API reference](https://treeform.github.io/ogl46)
